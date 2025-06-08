@@ -15,16 +15,22 @@ MonoBehaviour:
   dates:
   - itemID: oak_stick
     displayName: "\u6728\u306E\u68D2"
+    itemClass: Item
+    rarty: 0
     prefub: {fileID: 0}
     craftCount: 0
     recipeID: []
   - itemID: stone
     displayName: "\u77F3"
+    itemClass: Item
+    rarty: 0
     prefub: {fileID: 0}
     craftCount: 0
     recipeID: []
   - itemID: stone_and_stick
     displayName: "\u6728\u306E\u68D2\u3068\u77F3\u3092\u304F\u3063\u3064\u3051\u305F\u3082\u306E"
+    itemClass: Item
+    rarty: 0
     prefub: {fileID: 0}
     craftCount: 1
     recipeID:

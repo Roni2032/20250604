@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Manager<GameManager>
 {
-    public static GameManager instance;
     [SerializeField]
     [Header("ゲームのフレームレート")]
     int gameFrameRate = 120;
@@ -11,10 +10,9 @@ public class GameManager : MonoBehaviour
     GameObject player;
     private void Awake()
     {
-        instance = this;
         Init();
     }
-    void Init()
+    public override void Init()
     {
         Application.targetFrameRate = gameFrameRate;
     }

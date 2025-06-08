@@ -2,13 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemManager : MonoBehaviour
+public class ItemManager : Manager<ItemManager>
 {
-    public static ItemManager instance;
-    [SerializeField]
-    [Header("テスト用のアイテムID")]
-    string testID = "test_item";
-
     [SerializeField]
     [Header("アイテムのマスターデータ")]
     ItemScriptable itemScriptable;
@@ -18,7 +13,7 @@ public class ItemManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+
     }
     public bool IsItemExist(string id)
     {
@@ -110,5 +105,9 @@ public class ItemManager : MonoBehaviour
     public GameObject GetItemPrefab(string id)
     {
         return GetItemData(id).prefub;
+    }
+    public Rarty GetRarty(string id)
+    {
+        return GetItemData(id).rarty;
     }
 }
