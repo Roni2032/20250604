@@ -8,7 +8,7 @@ public class PlayerInventry : MonoBehaviour
 
     public void AddItem(Item item)
     {
-        int maxStack = ItemManager.instance.GetMaxStack();
+        int maxStack = ItemManager.Instance.GetMaxStack();
         Item itemStack = items.Find(x => x.GetID() == item.GetID());
        
         if (itemStack != null)
@@ -16,7 +16,7 @@ public class PlayerInventry : MonoBehaviour
             int overStack = itemStack.AddStack(item.GetStack());
             if(overStack > 0)
             {
-                Item item1 = new Item(item.GetID(), overStack);
+                Item item1 = ItemManager.Instance.CreateItem(item.GetID(), overStack);//new Item(item.GetID(), overStack);
                 items.Add(item1);
             }
         }
@@ -24,14 +24,14 @@ public class PlayerInventry : MonoBehaviour
         {
             items.Add(item);
         }
-        Debug.Log("アイテムを追加:" + ItemManager.instance.GetItemDisplayName(item.GetID()) + " x" + item.GetStack());
+        Debug.Log("アイテムを追加:" + ItemManager.Instance.GetItemDisplayName(item.GetID()) + " x" + item.GetStack());
     }
     public void RemoveItem(string id, int count)
     {
         Item itemStack = items.Find(x => x.GetID() == id);
         if (itemStack != null)
         {
-            Debug.Log("アイテムを削除:" + ItemManager.instance.GetItemDisplayName(id) + " x" + count);
+            Debug.Log("アイテムを削除:" + ItemManager.Instance.GetItemDisplayName(id) + " x" + count);
             itemStack.ReduceStack(count);
             if (itemStack.GetStack() <= 0)
             {
@@ -42,13 +42,13 @@ public class PlayerInventry : MonoBehaviour
 
     public void CraftItem(string id)
     {
-        if(!ItemManager.instance.IsItemExist(id))
+        if(!ItemManager.Instance.IsItemExist(id))
         {
             return;
         }
-        List<ItemRecipeData> recipe = ItemManager.instance.GetRecipe(id);
-        int craftCount = ItemManager.instance.GetCraftCount(id);
-        if (!ItemManager.instance.CheckCraftItem(recipe, items))
+        List<ItemRecipeData> recipe = ItemManager.Instance.GetRecipe(id);
+        int craftCount = ItemManager.Instance.GetCraftCount(id);
+        if (!ItemManager.Instance.CheckCraftItem(recipe, items))
         {
             return;
         }
@@ -60,13 +60,14 @@ public class PlayerInventry : MonoBehaviour
                 RemoveItem(item.itemID, item.count);
             }
         }
-        Item craftItem = new Item(id, craftCount);
+        Item craftItem = ItemManager.Instance.CreateItem(id, craftCount);//new Item(id, craftCount);
         AddItem(craftItem);
     }
     
     void Start()
     {
-        
+        AddItem(ItemManager.Instance.CreateItem("oak_stick", 2));
+        AddItem(ItemManager.Instance.CreateItem("stone", 2));
     }
 
     public void OnCraft(InputAction.CallbackContext context)

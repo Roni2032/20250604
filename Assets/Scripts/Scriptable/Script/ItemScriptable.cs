@@ -20,10 +20,10 @@ public class ItemScriptableDate
     public string itemID;
     public string displayName;
     public string itemClass;
-
+    public Rarty rarty = Rarty.Common;
     public GameObject prefub;
 
-    public int craftCount;
+    public int craftCount = 1;
     public List<ItemRecipeData> recipeID;
     
 }

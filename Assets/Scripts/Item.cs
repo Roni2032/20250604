@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Item
+public class Item : EntityBase
 {
     string itemID;
 
     int stack = 1;
-    
+
+    Rarty rarty;
     public Item Copy()
     {
-        Item item = ItemManager.instance.CreateItem(itemID, stack);
+        Item item = ItemManager.Instance.CreateItem(itemID, stack);
         return item;
     }
     public Item(string id,int amount = 1)
@@ -20,7 +21,7 @@ public class Item
     }
     public virtual void Initialize(string id,int amount)
     {
-        if(ItemManager.instance.IsItemExist(id))
+        if(ItemManager.Instance.IsItemExist(id))
         {
             itemID = id;
             stack = amount;
@@ -30,10 +31,14 @@ public class Item
     {
         return itemID;
     }
+    public Rarty GetRarty()
+    {
+        return rarty;
+    }
     public int AddStack(int amount)
     {
         stack += amount;
-        int maxStack = ItemManager.instance.GetMaxStack();
+        int maxStack = ItemManager.Instance.GetMaxStack();
         if (stack > maxStack)
         {
             int overStack = stack - maxStack;
@@ -57,6 +62,15 @@ public class Item
     }
     public virtual int GetMaxStack()
     {
-        return ItemManager.instance.GetMaxStack();
+        return ItemManager.Instance.GetMaxStack();
     }
+}
+
+public enum Rarty
+{
+    Common,
+    UnCommon,
+    Rare,
+    Epic,
+    Legend
 }
