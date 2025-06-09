@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 482ff047d5ab8d149b31c3e9c873161b, type: 3}
+  m_Name: ItemScriptable
+  m_EditorClassIdentifier: 
+  dates:
+  - itemID: oak_stick
+    displayName: "\u6728\u306E\u68D2"
+    itemClass: Item
+    rarty: 0
+    prefub: {fileID: 0}
+    craftCount: 0
+    recipeID: []
+  - itemID: stone
+    displayName: "\u77F3"
+    itemClass: Item
+    rarty: 0
+    prefub: {fileID: 0}
+    craftCount: 0
+    recipeID: []
+  - itemID: stone_and_stick
+    displayName: "\u6728\u306E\u68D2\u3068\u77F3\u3092\u304F\u3063\u3064\u3051\u305F\u3082\u306E"
+    itemClass: Item
+    rarty: 0
+    prefub: {fileID: 0}
+    craftCount: 1
+    recipeID:
+    - itemID: oak_stick
+      count: 1
+    - itemID: stone
+      count: 1
